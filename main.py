@@ -26,54 +26,54 @@ class RepairSystem:
         if 6 <= self.time % 24 < 22:    # symulacja zmiany dziennej
             print("Day repair")
             if 0 <= repair_id < 50:  # 50%
-                repair_time += random.randint(1, 5)
+                repair_time += random.uniform((1 / self.workers_amount), (5 / self.workers_amount))
                 self.parts_stock -= 1
                 self.parts_cost += random.randint(50, 100)
 
             elif 50 <= repair_id < 70:  # 20%
-                repair_time += random.randint(5/self.workers_amount, 10)
+                repair_time += random.uniform((5 / self.workers_amount), (10 / self.workers_amount))
                 self.parts_stock -= 2
                 self.parts_cost += random.randint(100, 200)
 
             elif 70 <= repair_id < 85:  # 15%
-                repair_time += random.randint(10, 15)
+                repair_time += random.uniform((10 / self.workers_amount), (15 / self.workers_amount))
                 self.parts_stock -= 3
                 self.parts_cost += random.randint(200, 400)
 
             elif 85 <= repair_id < 95:  # 10%
-                repair_time += random.randint(15, 20)
+                repair_time += random.uniform((15 / self.workers_amount), (20 / self.workers_amount))
                 self.parts_stock -= 4
                 self.parts_cost += random.randint(400, 800)
 
             elif 95 <= repair_id < 100:  # 5%
-                repair_time += random.randint(20, 25)
+                repair_time += random.uniform((20 / self.workers_amount), (25 / self.workers_amount))
                 self.parts_stock -= 5
                 self.parts_cost += random.randint(800, 1600)
 
         else:       # symulacja zmiany nocnej
             print("Night repair")
             if 0 <= repair_id < 50:  # 50%
-                repair_time += random.randint(3, 6)
+                repair_time += random.uniform((3 / (self.workers_amount * 0.6)), (6 / (self.workers_amount * 0.6)))
                 self.parts_stock -= 1
                 self.parts_cost += random.randint(50, 100)
 
             elif 50 <= repair_id < 70:  # 20%
-                repair_time += random.randint(6, 12)
+                repair_time += random.uniform((6 / (self.workers_amount * 0.6)), (12 / (self.workers_amount * 0.6)))
                 self.parts_stock -= 2
                 self.parts_cost += random.randint(100, 200)
 
             elif 70 <= repair_id < 85:  # 15%
-                repair_time += random.randint(12, 24)
+                repair_time += random.uniform((12 / (self.workers_amount * 0.6)), (24 / (self.workers_amount * 0.6)))
                 self.parts_stock -= 3
                 self.parts_cost += random.randint(200, 400)
 
             elif 85 <= repair_id < 95:  # 10%
-                repair_time += random.randint(24, 48)
+                repair_time += random.uniform((24 / (self.workers_amount * 0.6)), (48 / (self.workers_amount * 0.6)))
                 self.parts_stock -= 4
                 self.parts_cost += random.randint(400, 800)
 
             elif 95 <= repair_id < 100:  # 5%
-                repair_time += random.randint(48, 96)
+                repair_time += random.uniform((48 / (self.workers_amount * 0.6)), (96 / (self.workers_amount * 0.6)))
                 self.parts_stock -= 5
                 self.parts_cost += random.randint(800, 1600)
 
@@ -144,6 +144,6 @@ class RepairSystem:
 
 
 # Example usage
-repair_system = RepairSystem(parts_capacity=10, parts_stock=5, workers_amount=10)
+repair_system = RepairSystem(parts_capacity=10, parts_stock=5, workers_amount=100)
 repair_system.run_simulation(num_requests=50)
 repair_system.plot_results()
