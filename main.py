@@ -4,9 +4,10 @@ import matplotlib.pyplot as plt
 
 
 class RepairSystem:
-    def __init__(self, parts_capacity):
+    def __init__(self, parts_capacity, parts_stock, workers_amount):
         self.parts_capacity = parts_capacity
-        self.parts_stock = parts_capacity
+        self.parts_stock = parts_stock
+        self.workers_amount = workers_amount
         self.orders = 0
         self.parts_cost = 0
         self.completed_repairs = 0
@@ -30,7 +31,7 @@ class RepairSystem:
                 self.parts_cost += random.randint(50, 100)
 
             elif 50 <= repair_id < 70:  # 20%
-                repair_time += random.randint(5, 10)
+                repair_time += random.randint(5/self.workers_amount, 10)
                 self.parts_stock -= 2
                 self.parts_cost += random.randint(100, 200)
 
@@ -143,6 +144,6 @@ class RepairSystem:
 
 
 # Example usage
-repair_system = RepairSystem(parts_capacity=10)
+repair_system = RepairSystem(parts_capacity=10, parts_stock=5, workers_amount=10)
 repair_system.run_simulation(num_requests=50)
 repair_system.plot_results()
