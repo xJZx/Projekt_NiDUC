@@ -81,7 +81,8 @@ class RepairSystem:
 
     def complete_repair(self, repair_time):
         self.completed_repairs += 1
-        repair_time += self.check_parts_stock(repair_time)
+        while self.parts_stock <= 0:
+            repair_time += self.check_parts_stock(repair_time)
         self.total_repair_time += repair_time
         self.repair_times.append(repair_time)
 
@@ -92,7 +93,7 @@ class RepairSystem:
             # czas jesli brakuje czesci
             repair_time += random.randint(5, 10)
             self.orders += 1
-            self.parts_stock = self.parts_capacity
+            self.parts_stock += self.parts_capacity
             print("Ordering more parts, current stock:", self.parts_stock)
             return repair_time
 
@@ -144,6 +145,6 @@ class RepairSystem:
 
 
 # Example usage
-repair_system = RepairSystem(parts_capacity=10, parts_stock=5, workers_amount=100)
+repair_system = RepairSystem(parts_capacity=1, parts_stock=10, workers_amount=100)
 repair_system.run_simulation(num_requests=50)
 repair_system.plot_results()
