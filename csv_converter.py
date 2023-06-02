@@ -1,5 +1,7 @@
 import csv
 
+from matplotlib import pyplot as plt
+
 # opening the CSV file
 with open('data.csv', mode='r') as file:
     # reading the CSV file
@@ -23,6 +25,14 @@ with open('data.csv', mode='r') as file:
             elif num_requests <= i:
                 repair_time_occurances.append(lines[i + 2])
 
+    def plot_results():
+        fig, axs = plt.subplots(figsize=(20, 10))
+        axs.hist(repair_time_occurances, bins=repair_time_occurances)
+        axs.set_xlabel("Time")
+        axs.set_ylabel("State")
+        axs.set_title("Distribution of machine states")
+        plt.show()
+
     print(num_requests)
     print(time)
     print(total_repair_time)
@@ -30,5 +40,7 @@ with open('data.csv', mode='r') as file:
         print(i)
     for i in repair_time_occurances:
         print(i)
+
+    plot_results()
 
 
