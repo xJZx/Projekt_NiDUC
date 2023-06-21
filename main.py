@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 class RepairSystem:
     def __init__(self, parts_capacity, parts_stock, workers_amount):
-        self.num_requests = 5
+        self.num_requests = 50
         self.parts_capacity = parts_capacity
         self.parts_stock = parts_stock
         self.workers_amount = workers_amount
@@ -190,6 +190,6 @@ class RepairSystem:
 
 
 # Example usage
-repair_system = RepairSystem(parts_capacity=10, parts_stock=10, workers_amount=10)
+repair_system = RepairSystem(parts_capacity=10, parts_stock=100, workers_amount=10)
 repair_system.run_simulation()
 repair_system.plot_results()
